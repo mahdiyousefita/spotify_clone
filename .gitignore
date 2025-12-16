@@ -1,2 +1,17 @@
 # Project exclude paths
 /venv/
+/.idea/.gitignore
+/music/migrations/0001_initial.py
+/music/migrations/__init__.py
+/media/songs/Bear_McCreary_-_black_sails_320_1.mp3
+/db.sqlite3
+/media/songs/End_of_Beginning_-_Djo.flac
+/.idea/material_theme_project_new.xml
+/.idea/misc.xml
+/.idea/modules.xml
+/media/artists/profile_image_seond.png
+/media/covers/profile_image_seond.png
+/media/song_covers/profile_image_seond.png
+/.idea/inspectionProfiles/profiles_settings.xml
+/.idea/spotify_clone.iml
+/.idea/vcs.xml
