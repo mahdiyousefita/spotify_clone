@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>ورود به حساب</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css');
+        body { font-family: 'Vazirmatn', sans-serif; }
+    </style>
+</head>
+<body class="bg-black text-white h-screen flex items-center justify-center">
+
+<div class="bg-[#181818] p-8 rounded-xl shadow-2xl w-full max-w-md border border-[#282828]">
+    <h2 class="text-3xl font-bold text-center mb-8">ورود به اسپاتیفای</h2>
+
+    <form method="post" class="space-y-6">
+        {% csrf_token %}
+
+        {% if form.errors %}
+        <div class="bg-red-500/10 text-red-500 p-3 rounded text-sm">
+            نام کاربری یا رمز عبور اشتباه است.
+        </div>
+        {% endif %}
+
+        <div>
+            <label class="block text-sm font-medium text-gray-400 mb-2">نام کاربری</label>
+            <input type="text" name="username"
+                   class="w-full bg-[#121212] border border-[#282828] rounded p-3 text-white focus:border-green-500 focus:outline-none transition">
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium text-gray-400 mb-2">رمز عبور</label>
+            <input type="password" name="password"
+                   class="w-full bg-[#121212] border border-[#282828] rounded p-3 text-white focus:border-green-500 focus:outline-none transition">
+        </div>
+
+        <button type="submit"
+                class="w-full bg-green-500 hover:bg-green-400 text-black font-bold py-3 rounded-full transition transform hover:scale-105">
+            ورود
+        </button>
+    </form>
+
+    <p class="mt-6 text-center text-gray-400 text-sm">
+        حساب ندارید؟
+        <a href="{% url 'signup' %}" class="text-white hover:underline font-bold">ثبت نام کنید</a>
+    </p>
+
+    <div class="mt-4 text-center">
+        <a href="{% url 'home' %}" class="text-gray-500 text-xs hover:text-white">بازگشت به خانه</a>
+    </div>
+</div>
+
+</body>
+</html>

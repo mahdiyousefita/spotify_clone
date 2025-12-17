@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ artist.name }} | اسپاتیفای</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css');
+        body { font-family: 'Vazirmatn', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-900 text-white pb-24">
+
+    <div class="p-6">
+        <a href="{% url 'home' %}" class="inline-flex items-center text-gray-400 hover:text-white transition">
+            <svg class="w-6 h-6 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+            بازگشت به خانه
+        </a>
+    </div>
+
+    <div class="flex flex-col md:flex-row items-center gap-8 px-6 mb-10">
+        <img src="{{ artist.image.url }}" class="w-48 h-48 rounded-full object-cover shadow-2xl border-4 border-gray-800">
+        <div class="text-center md:text-right">
+            <h1 class="text-4xl md:text-6xl font-black mb-4">{{ artist.name }}</h1>
+            <p class="text-gray-400 max-w-2xl leading-relaxed">{{ artist.bio|default:"بدون بیوگرافی" }}</p>
+        </div>
+    </div>
+
+    <div class="container mx-auto p-6">
+        <h2 class="text-2xl font-bold mb-6 border-b border-gray-800 pb-2">آهنگ‌های {{ artist.name }}</h2>
+
+        <div class="flex flex-col gap-2">
+            {% for song in songs %}
+            <div class="flex items-center justify-between bg-[#181818] p-4 rounded hover:bg-[#282828] transition group">
+                <div class="flex items-center gap-4">
+                    <button onclick="playMusic('{{ song.audio_file.url }}')" class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-black opacity-0 group-hover:opacity-100 transition">
+                        <svg class="w-5 h-5 pl-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </button>
+
+                    <span class="font-bold text-gray-400 w-6 text-center group-hover:hidden">{{ forloop.counter }}</span>
+
+                    <div>
+                        <h3 class="font-bold text-white">{{ song.title }}</h3>
+                        <p class="text-sm text-gray-500">{{ song.album.title }}</p>
+                    </div>
+                </div>
+
+                <span class="text-sm text-gray-500">3:45</span>
+            </div>
+            {% empty %}
+                <p>هیچ آهنگی برای این هنرمند یافت نشد.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="fixed bottom-0 left-0 right-0 bg-[#181818] border-t border-[#282828] p-3 flex justify-center">
+        <audio id="audio-player" controls class="w-full max-w-3xl h-10" style="filter: invert(1);">
+            <source src="" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <script>
+        function playMusic(url) {
+            var player = document.getElementById('audio-player');
+            player.src = url;
+            player.play();
+        }
+    </script>
+
+</body>
+</html>
