@@ -1,54 +1,86 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ورود به حساب</title>
+    <title>Spotify Login</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css');
         body { font-family: 'Vazirmatn', sans-serif; }
+
+        input {
+            background-color: #121212 !important;
+            color: #ffffff !important;
+            border: 1px solid #333 !important;
+            padding: 12px !important;
+            border-radius: 8px !important;
+            width: 100%;
+        }
+
+        input:focus {
+            border-color: #22c55e !important;
+            outline: none !important;
+        }
     </style>
 </head>
-<body class="bg-black text-white h-screen flex items-center justify-center">
 
-<div class="bg-[#181818] p-8 rounded-xl shadow-2xl w-full max-w-md border border-[#282828]">
-    <h2 class="text-3xl font-bold text-center mb-8">ورود به اسپاتیفای</h2>
+<body class="bg-black text-white min-h-screen flex items-center justify-center py-12">
+
+<div class="bg-[#181818] p-8 rounded-xl shadow-2xl w-full max-w-md border border-[#282828] mx-4">
+
+    <!-- Spotify Logo -->
+    <div class="flex justify-center mb-6">
+        <svg role="img" height="40" width="40" viewBox="0 0 168 168">
+            <path fill="#1DB954" d="M84 0C37.7 0 0 37.7 0 84s37.7 84 84 84 84-37.7 84-84S130.3 0 84 0zm38.3 121.5c-1.5 2.5-4.8 3.3-7.3 1.8-20-12.2-45.2-15-74.8-8.4-2.9.6-5.8-1.2-6.5-4.1-.6-2.9 1.2-5.8 4.1-6.5 32.4-7.2 60.5-3.9 82.6 9.6 2.5 1.5 3.3 4.8 1.9 7.3zm10.4-23.2c-1.9 3.1-5.9 4.1-9 2.2-22.9-14.1-57.8-18.2-84.9-9.9-3.5 1.1-7.2-.9-8.3-4.4-1.1-3.5.9-7.2 4.4-8.3 31.1-9.4 69.7-4.9 96.2 11.4 3.1 1.9 4.1 5.9 2.2 9zm.9-24.2C106.2 58.6 58.8 56.9 33 64.7c-4 1.2-8.2-1-9.4-5-1.2-4 1-8.2 5-9.4 29.6-8.9 80.1-6.3 111.6 12.3 3.7 2.2 4.9 7 2.7 10.7-2.2 3.7-7 4.9-10.7 2.7z"/>
+        </svg>
+    </div>
+
+    <p class="text-center text-gray-400 text-sm mb-8">
+        Log in to Spotify
+    </p>
 
     <form method="post" class="space-y-6">
         {% csrf_token %}
 
         {% if form.errors %}
-        <div class="bg-red-500/10 text-red-500 p-3 rounded text-sm">
-            نام کاربری یا رمز عبور اشتباه است.
-        </div>
+            <div class="bg-red-500/10 text-red-500 p-3 rounded text-sm border border-red-500/20">
+                Incorrect username or password.
+            </div>
         {% endif %}
 
         <div>
-            <label class="block text-sm font-medium text-gray-400 mb-2">نام کاربری</label>
-            <input type="text" name="username"
-                   class="w-full bg-[#121212] border border-[#282828] rounded p-3 text-white focus:border-green-500 focus:outline-none transition">
+            <label class="block text-xs font-bold text-gray-400 mb-2">
+                Username
+            </label>
+            <input type="text" name="username">
         </div>
 
         <div>
-            <label class="block text-sm font-medium text-gray-400 mb-2">رمز عبور</label>
-            <input type="password" name="password"
-                   class="w-full bg-[#121212] border border-[#282828] rounded p-3 text-white focus:border-green-500 focus:outline-none transition">
+            <label class="block text-xs font-bold text-gray-400 mb-2">
+                Password
+            </label>
+            <input type="password" name="password">
         </div>
 
         <button type="submit"
-                class="w-full bg-green-500 hover:bg-green-400 text-black font-bold py-3 rounded-full transition transform hover:scale-105">
-            ورود
+                class="w-full bg-green-500 hover:bg-green-400 text-black font-bold py-3 rounded-full transition transform hover:scale-105 shadow-lg">
+            Log In
         </button>
     </form>
 
     <p class="mt-6 text-center text-gray-400 text-sm">
-        حساب ندارید؟
-        <a href="{% url 'signup' %}" class="text-white hover:underline font-bold">ثبت نام کنید</a>
+        Don’t have an account?
+        <a href="{% url 'signup' %}" class="text-white hover:underline font-bold">
+            Sign up
+        </a>
     </p>
 
     <div class="mt-4 text-center">
-        <a href="{% url 'home' %}" class="text-gray-500 text-xs hover:text-white">بازگشت به خانه</a>
+        <a href="{% url 'home' %}" class="text-gray-500 text-xs hover:text-white">
+            Back to home
+        </a>
     </div>
+
 </div>
 
 </body>

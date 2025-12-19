@@ -22,6 +22,16 @@ def home(request):
     }
     return render(request, 'music/home.html', context)
 
+
+
+from django.shortcuts import render
+
+def dashboard(request):
+    return render(request, 'music/dashboard.html')
+
+
+
+
 def artist_detail(request, artist_id):
     artist = get_object_or_404(Artist, id=artist_id)
 

@@ -2,7 +2,7 @@
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>ثبت نام در اسپاتیفای</title>
+    <title>spotify signup</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css');
@@ -35,7 +35,12 @@
 <body class="bg-black text-white min-h-screen flex items-center justify-center py-12">
 
 <div class="bg-[#181818] p-8 rounded-xl shadow-2xl w-full max-w-md border border-[#282828] mx-4">
-    <h2 class="text-3xl font-bold text-center mb-8">عضویت رایگان</h2>
+<div class="flex justify-center mb-8">
+    <svg role="img" height="40" width="40" viewBox="0 0 168 168">
+        <path fill="#1DB954" d="M84 0C37.7 0 0 37.7 0 84s37.7 84 84 84 84-37.7 84-84S130.3 0 84 0zm38.3 121.5c-1.5 2.5-4.8 3.3-7.3 1.8-20-12.2-45.2-15-74.8-8.4-2.9.6-5.8-1.2-6.5-4.1-.6-2.9 1.2-5.8 4.1-6.5 32.4-7.2 60.5-3.9 82.6 9.6 2.5 1.5 3.3 4.8 1.9 7.3zm10.4-23.2c-1.9 3.1-5.9 4.1-9 2.2-22.9-14.1-57.8-18.2-84.9-9.9-3.5 1.1-7.2-.9-8.3-4.4-1.1-3.5.9-7.2 4.4-8.3 31.1-9.4 69.7-4.9 96.2 11.4 3.1 1.9 4.1 5.9 2.2 9zm.9-24.2C106.2 58.6 58.8 56.9 33 64.7c-4 1.2-8.2-1-9.4-5-1.2-4 1-8.2 5-9.4 29.6-8.9 80.1-6.3 111.6 12.3 3.7 2.2 4.9 7 2.7 10.7-2.2 3.7-7 4.9-10.7 2.7z"/>
+    </svg>
+</div>
+
 
     <form method="post" class="space-y-6">
         {% csrf_token %}
@@ -52,9 +57,12 @@
             <div class="relative">
                 <label class="block text-xs font-bold text-gray-400 mb-2 mr-1">{{ field.label }}</label>
                 {{ field }}
-                {% if field.help_text %}
-                    <p class="text-[10px] text-gray-500 mt-1 mr-1">{{ field.help_text }}</p>
-                {% endif %}
+                {% if field.name == "password1" %}
+                <p class="text-xs text-gray-500 mt-1">
+                Use at least 8 characters.
+                 </p>
+            {% endif %}
+
                 {% if field.errors %}
                     <div class="text-red-400 text-xs mt-1 mr-1">
                         {{ field.errors.0 }}
@@ -64,17 +72,17 @@
         {% endfor %}
 
         <button type="submit" class="w-full bg-green-500 hover:bg-green-400 text-black font-bold py-3 rounded-full mt-6 transition transform hover:scale-105 shadow-lg">
-            ثبت نام
+            signup
         </button>
     </form>
 
     <p class="mt-6 text-center text-gray-400 text-sm">
-        از قبل حساب داری؟
-        <a href="{% url 'login' %}" class="text-white hover:underline font-bold">ورود</a>
+       already have an account?
+        <a href="{% url 'login' %}" class="text-white hover:underline font-bold">login</a>
     </p>
 
     <div class="mt-4 text-center">
-        <a href="{% url 'home' %}" class="text-gray-500 text-xs hover:text-white">بازگشت به خانه</a>
+        <a href="{% url 'home' %}" class="text-gray-500 text-xs hover:text-white">bavk to home</a>
     </div>
 </div>
 

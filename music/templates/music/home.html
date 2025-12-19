@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>اسپاتیفای من</title>
+    <title>Spotify Clone</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css');
@@ -17,26 +17,60 @@
     </style>
 </head>
 <body class="bg-gray-900 text-white pb-28">
-<nav class="bg-black/90 backdrop-blur-md p-4 sticky top-0 z-50 border-b border-gray-800">
-    <div class="container mx-auto flex justify-between items-center">
-        <div class="flex items-center gap-2">
-            <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
-                <svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm5.5 17.3c-.2.3-.5.4-.8.2-2.2-1.3-5-1.6-8.3-.9-.3.1-.6-.1-.7-.4-.1-.3.1-.6.4-.7 3.6-.8 6.7-.5 9.1.9.3.1.4.5.3.7zm1.1-2.9c-.3.4-.8.5-1.2.3-2.7-1.7-6.8-2.2-9.9-1.2-.4.1-.9-.1-1-.5-.1-.4.1-.9.5-1 3.6-1.1 8.1-.6 11.2 1.3.4.1.5.6.3 1.1zm.1-2.9c-3.2-1.9-8.5-2.1-11.6-1.1-.5.2-1-.1-1.2-.6-.2-.5.1-1 .6-1.2 3.6-1.1 9.4-.8 13.2 1.4.4.3.5.8.3 1.3-.3.4-.8.5-1.3.2z"/>
-                </svg>
-            </div>
-            <h1 class="text-xl font-bold tracking-tight">Spotify Clone</h1>
-        </div>
 
-        <form action="{% url 'home' %}" method="GET" class="w-1/3">
+    
+<nav class="bg-black/90 backdrop-blur-md sticky top-0 z-50 border-b border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+
+        <!-- Logo + Home Icon -->
+    <div class="flex items-center gap-4">
+    <!-- Spotify Logo -->
+    <div class="w-9 h-9 bg-green-500 rounded-full flex items-center justify-center">
+        <svg role="img" viewBox="0 0 24 24" class="w-5 h-5 text-black" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.373 0 12c0 6.628 5.37 12 12 12s12-5.372 12-12C24 5.373 18.63 0 12 0zm5.488 17.257c-.214.347-.66.454-1.006.241-2.753-1.69-6.214-2.073-10.29-1.14-.394.092-.788-.16-.88-.554-.092-.394.16-.788.554-.88 4.455-1.02 8.282-.59 11.344 1.285.346.214.453.66.278 1.048zm1.439-3.185c-.268.43-.83.56-1.26.293-3.148-1.935-7.94-2.495-11.642-1.371-.485.146-.993-.122-1.14-.607-.146-.485.122-.993.607-1.14 4.23-1.288 9.49-.665 13.073 1.535.43.268.56.83.362 1.29zm.123-3.318C15.53 8.77 9.745 8.53 6.72 9.48c-.56.175-1.155-.137-1.33-.697-.175-.56.137-1.155.697-1.33 3.53-1.104 9.936-.89 13.76 1.356.512.303.68.964.376 1.476-.302.513-.964.68-1.476.376z"/>
+        </svg>
+    </div>
+
+    <!-- Home Icon -->
+    <a href="{% url 'home' %}"
+       class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-800 hover:bg-gray-700 transition group">
+        <svg class="w-5 h-5 text-white group-hover:text-green-500 transition"
+             fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 9.75L12 4l9 5.75V20a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1V9.75z"/>
+        </svg>
+    </a>
+
+    <!-- Dashboard Icon -->
+    <a href="{% url 'dashboard' %}"
+       class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-800 hover:bg-gray-700 transition group">
+        <svg class="w-5 h-5 text-white group-hover:text-green-500 transition"
+             fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M5.121 17.804A9 9 0 0112 15a9 9 0 016.879 2.804M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+        </svg>
+    </a>
+
+    <!-- Mobile Search Icon -->
+<button id="mobile-search-btn" class="md:hidden w-10 h-10 flex items-center justify-center rounded-full bg-gray-800 hover:bg-gray-700 transition">
+    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+    </svg>
+</button>
+
+</div>
+
+        <form action="{% url 'home' %}" method="GET"
+      class="hidden md:block w-[360px]">
             <div class="relative">
                 <input type="text"
                        name="q"
                        value="{{ query|default:'' }}"
-                       placeholder="جستجوی آهنگ یا خواننده..."
+                      placeholder="Search for songs or artists"
                        class="w-full bg-gray-800 text-sm text-white px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 border border-transparent focus:border-transparent transition-all pl-10">
 
-                <button type="submit" class="absolute left-3 top-2.5 text-gray-400 hover:text-white">
+                <button class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                               d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
@@ -44,24 +78,42 @@
                 </button>
             </div>
         </form>
+        <form id="mobile-search-form" action="{% url 'home' %}" method="GET"
+      class="absolute top-16 left-0 right-0 bg-gray-900 p-4 hidden z-50">
+    <div class="relative">
+        <input type="text"
+               name="q"
+               value="{{ query|default:'' }}"
+               placeholder="Search for songs or artists"
+               class="w-full bg-gray-800 text-white px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 border border-transparent focus:border-transparent transition-all pl-10">
+
+        <button class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+        </button>
+    </div>
+</form>
 
         <div class="flex items-center gap-4 text-sm font-medium">
-            <a href="#" class="hover:text-green-500 transition">خانه</a>
-            <a href="#" class="hover:text-green-500 transition">پلی‌لیست‌ها</a>
             <div class="flex items-center gap-4 text-sm font-medium">
-                <a href="{% url 'home' %}" class="hover:text-green-500 transition">خانه</a>
 
                 {% if user.is_authenticated %}
-                <span class="text-green-500">سلام، {{ user.username }}</span>
+                <span class="text-green-500">Hi, {{ user.username }}</span>
 
                 <form action="{% url 'logout' %}" method="POST" class="inline">
                     {% csrf_token %}
-                    <button type="submit" class="hover:text-red-500 transition">خروج</button>
+                    <button type="submit" class="hover:text-red-500 transition">logout</button>
                 </form>
                 {% else %}
-                <a href="{% url 'signup' %}" class="hover:text-white transition">ثبت‌نام</a>
+                <a href="{% url 'signup' %}" class="hover:text-white transition">Sign up</a>
+
                 <a href="{% url 'login' %}"
-                   class="bg-white text-black px-6 py-2 rounded-full font-bold hover:scale-105 transition">ورود</a>
+                class="bg-white text-black px-6 py-2 rounded-full font-bold hover:scale-105 transition">
+                Log in
+                </a>
+
                 {% endif %}
             </div>
         </div>
@@ -73,7 +125,7 @@
     <section>
         <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
             <span class="w-1 h-6 bg-green-500 rounded-full block"></span>
-            جدیدترین آهنگ‌ها
+           Latest Songs
         </h2>
 
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
@@ -107,7 +159,7 @@
                 </a>
             </div>
             {% empty %}
-            <p class="text-gray-400 col-span-full text-center py-10">هنوز آهنگی اضافه نشده است.</p>
+            <p class="text-gray-400 col-span-full text-center py-10">No songs have been added yet.</p>
             {% endfor %}
         </div>
     </section>
@@ -119,7 +171,8 @@
         <div class="flex items-center w-1/4 min-w-[200px]">
             <img id="player-cover" src="" class="h-14 w-14 rounded shadow-md hidden object-cover">
             <div class="mr-4 overflow-hidden">
-                <h4 id="player-title" class="text-sm font-bold text-white truncate">آهنگی انتخاب کنید</h4>
+                <h4 id="player-title" class="text-sm font-bold text-white truncate"><h4>Select a song</h4>
+            </h4>
                 <p id="player-artist" class="text-xs text-gray-400 truncate mt-1">...</p>
             </div>
         </div>
@@ -163,5 +216,15 @@
         audio.play();
     }
 </script>
+<script>
+    const mobileSearchBtn = document.getElementById('mobile-search-btn');
+    const mobileSearchForm = document.getElementById('mobile-search-form');
+
+    mobileSearchBtn.addEventListener('click', () => {
+        mobileSearchForm.classList.toggle('hidden');
+        mobileSearchForm.querySelector('input').focus();
+    });
+</script>
+
 </body>
 </html>
